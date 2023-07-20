@@ -25,45 +25,37 @@ class _MyHomePageState extends State<HomeResponsive> {
 
   @override
   Widget build(BuildContext context) {
+
     return OrientationBuilder(
         builder: (context, orientation){
           final isPortrait = orientation == Orientation.portrait;
 
           return Scaffold(
-              appBar: AppBar(
-                title: const Text('News Feed'),
-              ),
-              body: GridView.count(
-                    crossAxisCount: isPortrait ? 1:2,
-                    children: List.generate(
-                        6, (index) => Card(
-                          margin: const EdgeInsets.all(10),
-                          semanticContainer: true,
-                        elevation: 3,
-                          child: SizedBox(
-                            width: 10,
-                            height: 150,
-                            child: ColoredBox(color: Colors.grey,child: Center(child: Text('150 x 150',style: TextStyle(color: Colors.blueGrey)),),),
-                            //child: Image.network('https://play-lh.googleusercontent.com/fWOFhAaXbqYILb7AzCelO2d39HFZtH17suMMsdHPP_6RgfI-jDdx14Sg1fl7D1AaBHVX=w2560-h1440-rw',fit: BoxFit.fill,width: 120,height: 120,),
-
-                          )
-
+            appBar: AppBar(
+              title: const Text('News Feed'),
+            ),
+            body: GridView.count(
+                crossAxisCount: isPortrait ? 1:2,
+                childAspectRatio: isPortrait ? (1/.4):(1/.6),
+                children: List.generate(
+                  6, (index) => Card(
+                  margin: const EdgeInsets.all(10),
+                  elevation: 3,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        width: 150,
+                        height: 150,
+                        child: ColoredBox(color: Colors.grey,child: Center(child: Text('150 x 150',style: TextStyle(color: Colors.blueGrey)),),),
                       ),
-
-
-
-
-                    )
-
-
+                    ],
+                  ),
                 ),
-
-
-
-
+                )
+            ),
           );
-
-
         }
 
       // appBar: AppBar(
